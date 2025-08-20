@@ -1,0 +1,91 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjlbpkqobpk8m"]
+
+[ext_resource type="Script" uid="uid://p3ilyrlk2npa" path="res://scripts/menus/menu.gd" id="1_63g1t"]
+[ext_resource type="Texture2D" uid="uid://c4d6s1mkspggv" path="res://assets/images/mainmenu_bg.png" id="1_v46pp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v46pp"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_63g1t")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_v46pp")
+stretch_mode = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.5
+offset_top = 16.0
+offset_right = 63.5
+offset_bottom = 32.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Battery Blasters"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../LeaderboardButton")
+theme_override_colors/font_focus_color = Color(1, 1, 0.231373, 1)
+theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = SubResource("StyleBoxEmpty_v46pp")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_v46pp")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_v46pp")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_v46pp")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_v46pp")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_v46pp")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_v46pp")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_v46pp")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_v46pp")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_v46pp")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_v46pp")
+text = "Start"
+
+[node name="LeaderboardButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../StartButton")
+theme_override_colors/font_focus_color = Color(1, 1, 0.231373, 1)
+theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = SubResource("StyleBoxEmpty_v46pp")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_v46pp")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_v46pp")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_v46pp")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_v46pp")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_v46pp")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_v46pp")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_v46pp")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_v46pp")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_v46pp")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_v46pp")
+text = "Leaderboard"
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/LeaderboardButton" to="." method="_on_leaderboard_button_pressed"]
