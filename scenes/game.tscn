@@ -1,3 +1,18 @@
-[gd_scene format=3 uid="uid://njejd085t3mv"]
+[gd_scene load_steps=3 format=3 uid="uid://iigqi82y4ado"]
+
+[ext_resource type="Texture2D" uid="uid://s7f72jqe3cr8" path="res://assets/images/game_bg_tileable.png" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://cc7j30476b506" path="res://scenes/player.tscn" id="2_yqjtg"]
 
 [node name="Game" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(640, 360)
+
+[node name="Sprite" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("1_uwrxv")
+centered = false
+
+[node name="Player" parent="." instance=ExtResource("2_yqjtg")]
+position = Vector2(320, 176)
