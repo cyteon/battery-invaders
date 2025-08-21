@@ -1,12 +1,12 @@
 extends CharacterBody2D
 
-var energy: int = 100
+var energy: int = 10000
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		look_at(get_global_mouse_position())
 	
-	if event.is_action("boost"):
+	if event.is_action("boost") and energy > 0:
 		energy -= 1
 		
 		var direction = (get_global_mouse_position() - global_position).normalized()
@@ -21,7 +21,9 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity -= friction
 	
-	if velocity.length() > 500:
-		velocity = velocity.normalized() * 500
+	if velocity.length() > 800:
+		velocity = velocity.normalized() * 800
+	
+	$CanvasLayer/ProgressBar.value = energy
 	
 	move_and_slide()

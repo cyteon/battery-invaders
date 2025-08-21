@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://iigqi82y4ado"]
+[gd_scene load_steps=4 format=3 uid="uid://iigqi82y4ado"]
 
+[ext_resource type="Script" uid="uid://7pkgv1nomr3x" path="res://scripts/game.gd" id="1_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://s7f72jqe3cr8" path="res://assets/images/game_bg_tileable.png" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://cc7j30476b506" path="res://scenes/player.tscn" id="2_yqjtg"]
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_lnu2h")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -15,4 +17,6 @@ texture = ExtResource("1_uwrxv")
 centered = false
 
 [node name="Player" parent="." instance=ExtResource("2_yqjtg")]
-position = Vector2(320, 176)
+position = Vector2(0, -128)
+
+[node name="Walls" type="Node2D" parent="."]
