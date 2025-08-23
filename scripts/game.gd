@@ -45,6 +45,12 @@ func _generate_next_segment(i: int = -1):
 	
 	last_path_center = next_center
 	next_seg_y = next_center.y
+	
+	if randi_range(0,3) == 1:
+		var bat = load("res://scenes/items/battery.tscn").instantiate()
+		bat.position = last_path_center + Vector2(randi_range(-100, 100), randi_range(-100, 100))
+		
+		$Items.add_child(bat)
 
 func create_wall_segment(start: Vector2, end: Vector2) -> StaticBody2D:
 	var wall = StaticBody2D.new()
