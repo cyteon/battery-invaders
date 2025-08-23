@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://1ihna8wcpkus"]
+[gd_scene load_steps=3 format=3 uid="uid://1ihna8wcpkus"]
 
 [ext_resource type="Texture2D" uid="uid://dcdbnm4ukyd7t" path="res://assets/images/leaderboard_bg.png" id="2_1ut1y"]
+[ext_resource type="PackedScene" uid="uid://b1sa82i5gdln5" path="res://scenes/crt_shader.tscn" id="2_g6ipy"]
 
 [node name="Leaderboard" type="Control"]
 layout_mode = 3
@@ -32,3 +33,5 @@ offset_bottom = 32.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 32
 text = "Leaderboard"
+
+[node name="CrtShader" parent="." instance=ExtResource("2_g6ipy")]
