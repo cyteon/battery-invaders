@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://iigqi82y4ado"]
+[gd_scene load_steps=6 format=3 uid="uid://iigqi82y4ado"]
 
 [ext_resource type="Script" uid="uid://7pkgv1nomr3x" path="res://scripts/game.gd" id="1_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://s7f72jqe3cr8" path="res://assets/images/game_bg_tileable.png" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://cc7j30476b506" path="res://scenes/player.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://b1sa82i5gdln5" path="res://scenes/crt_shader.tscn" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://cuelhvo2wm73r" path="res://scenes/items/Battery.tscn" id="5_iywne"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_lnu2h")
@@ -23,3 +24,28 @@ position = Vector2(0, -128)
 [node name="Walls" type="Node2D" parent="."]
 
 [node name="CrtShader" parent="." instance=ExtResource("4_lbhrr")]
+
+[node name="Items" type="Node" parent="."]
+
+[node name="Battery" parent="Items" instance=ExtResource("5_iywne")]
+position = Vector2(0, -256)
+
+[node name="Tutorial" type="Node2D" parent="."]
+
+[node name="Battery" type="Label" parent="Tutorial"]
+offset_left = -296.0
+offset_top = -272.0
+offset_right = -163.0
+offset_bottom = -237.0
+theme_override_font_sizes/font_size = 16
+text = "Hit a battery to get more energy"
+autowrap_mode = 2
+
+[node name="Movement" type="Label" parent="Tutorial"]
+offset_left = -296.0
+offset_top = -72.0
+offset_right = -168.0
+offset_bottom = -16.0
+theme_override_font_sizes/font_size = 16
+text = "Press space to boost, use mouse to rotate"
+autowrap_mode = 2

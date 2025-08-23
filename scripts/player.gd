@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
 var energy: int = 100
+var hearts: int = 3
+var still_colliding_with_wall: bool = false
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -13,14 +15,9 @@ func _physics_process(delta: float) -> void:
 		var direction = (get_global_mouse_position() - global_position).normalized()
 		velocity += direction * 50
 		
-		$FireRed.emitting = true
-		$FireOrange.emitting = true
+		$EngineParticles.emitting = true
 	else:
-		if $FireOrange.emitting or $FireRed.emitting:
-			$FireRed.restart()
-			$FireRed.emitting = false
-			$FireOrange.restart()
-			$FireOrange.emitting = false
+		$EngineParticles.emitting = false
 	
 	if velocity.length() > 0:
 		var friction = velocity.normalized() * 400 * delta
@@ -32,7 +29,27 @@ func _physics_process(delta: float) -> void:
 	
 	if velocity.length() > 800:
 		velocity = velocity.normalized() * 800
+		
+	move_and_slide()
+	
+	var has_collided_with_wall: bool = false
+	
+	if get_slide_collision_count() > 0:
+		for i in range(get_slide_collision_count()):
+			var collider = get_slide_collision(i).get_collider()
+			
+			if collider.is_in_group("wall"):
+				has_collided_with_wall = true
+				
+				if not still_colliding_with_wall:
+					damage(1)
+					still_colliding_with_wall = true
+	
+	if not has_collided_with_wall:
+		still_colliding_with_wall = false
 	
 	$CanvasLayer/ProgressBar.value = energy
-	
-	move_and_slide()
+	$CanvasLayer/Hearts.size.x = hearts * 16
+
+func damage(v: int):
+	hearts -= v

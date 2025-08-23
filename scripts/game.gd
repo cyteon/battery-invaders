@@ -11,15 +11,22 @@ var next_seg_y: int = 0
 
 func _ready() -> void:
 	for i in range(segments_ahead):
-		_generate_next_segment()
+		_generate_next_segment(i)
 
 func _process(delta: float) -> void:
 	while $Player.global_position.y - 1000 < next_seg_y:
 		print("generating")
 		_generate_next_segment()
 
-func _generate_next_segment():
-	var direction = Vector2.UP.rotated(randf_range(-rand, rand)) * segment_len
+func _generate_next_segment(i: int = -1):
+	var direction: Vector2
+	
+	if i > 1 or i == -1:
+		direction = Vector2.UP.rotated(randf_range(-rand, rand)) * segment_len
+		print("blep")
+	else:
+		direction = Vector2.UP * segment_len
+	
 	var next_center = last_path_center + direction
 	
 	var left = create_wall_segment(
@@ -41,6 +48,8 @@ func _generate_next_segment():
 
 func create_wall_segment(start: Vector2, end: Vector2) -> StaticBody2D:
 	var wall = StaticBody2D.new()
+	wall.add_to_group("wall")
+	
 	var col = CollisionPolygon2D.new()
 	
 	var dir = (end - start).normalized()
