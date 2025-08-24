@@ -47,14 +47,14 @@ func _generate_next_segment(i: int = -1):
 	
 	if randi_range(0,2) == 1:
 		var bat = load("res://scenes/items/battery.tscn").instantiate()
-		bat.position = last_path_center + Vector2(randi_range(-100, 100), randi_range(-100, 100))
+		bat.position = last_path_center + Vector2(randi_range(-50, 50), randi_range(-100, 100))
 		
 		$Items.add_child(bat)
 	
 	if randi_range(0,1) == 1:
 		for idx in range(randi_range(0,3)):
 			var enemy = load("res://scenes/enemy.tscn").instantiate()
-			enemy.global_position = last_path_center + Vector2(randi_range(-path_w / 2, path_w / 2), randi_range(-100, 100))
+			enemy.global_position = last_path_center + Vector2(randi_range(-50, 50 ), randi_range(-100, 100))
 			
 			$Enemies.add_child(enemy)
 
@@ -97,3 +97,7 @@ func create_wall_segment(start: Vector2, end: Vector2) -> StaticBody2D:
 		wall.add_child(sprite)
 	
 	return wall
+
+
+func _on_audio_stream_player_finished() -> void:
+	$AudioStreamPlayer.play()

@@ -76,6 +76,8 @@ func _physics_process(delta: float) -> void:
 					else:
 						damage(1)
 					
+					$SFX/Hit.play()
+					
 					still_colliding_with_wall = true
 				
 				var normal = get_slide_collision(i).get_normal()
@@ -83,6 +85,10 @@ func _physics_process(delta: float) -> void:
 	
 	if not has_collided_with_wall:
 		still_colliding_with_wall = false
+	
+	if energy == 0:
+		damage(1)
+		energy += 50
 	
 	$CanvasLayer/ProgressBar.value = energy
 	$CanvasLayer/Hearts.size.x = hearts * 16
@@ -94,6 +100,7 @@ func damage(v: int):
 	$SFX/Hit.play()
 	
 	if hearts == 0:
+		$EngineParticles.emitting = false
 		$CanvasLayer/GameOver.show()
 		$CanvasLayer/GameOver/Buttons/MenuMenuButton.grab_focus()
 

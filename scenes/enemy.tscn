@@ -5,16 +5,6 @@
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_7p1mj")
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2(8, 0)
-color = Color(1, 0.31, 0.31, 1)
-polygon = PackedVector2Array(-24, -16, -24, 16, 8, 0)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-16, -16, -16, 16, 16, 0)
-
-[node name="RayCast2D" type="RayCast2D" parent="."]
-
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false
 amount = 1024
@@ -26,6 +16,16 @@ gravity = Vector2(0, 0)
 initial_velocity_min = 50.0
 initial_velocity_max = 100.0
 color = Color(1, 0.18, 0.18, 1)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(8, 0)
+color = Color(1, 0.31, 0.31, 1)
+polygon = PackedVector2Array(-24, -16, -24, 16, 8, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-16, -16, -16, 16, 16, 0)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
 
 [node name="Area2D" type="Area2D" parent="."]
 

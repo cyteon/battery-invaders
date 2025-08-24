@@ -35,9 +35,11 @@ func _physics_process(delta: float) -> void:
 func kill() -> void:
 	$Polygon2D.hide()
 	$Area2D.monitoring = false
-	$CollisionPolygon2D.disabled = true
 	$CPUParticles2D.emitting = true
 	dead = true
+	
+	collision_layer = 0
+	collision_mask = 0
 	
 	if randi_range(0,1) == 0:
 		var battery = load("res://scenes/items/battery.tscn").instantiate()
