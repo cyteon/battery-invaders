@@ -7,10 +7,16 @@ var score: int = 0
 var still_colliding_with_wall: bool = false
 
 func _input(event: InputEvent) -> void:
+	if $CanvasLayer/GameOver.visible:
+		return
+	
 	if event is InputEventMouseMotion:
 		look_at(get_global_mouse_position())
 
 func _physics_process(delta: float) -> void:
+	if $CanvasLayer/GameOver.visible:
+		return
+	
 	if Input.is_action_pressed("boost") and energy > 0:
 		energy -= 1
 		
@@ -30,6 +36,7 @@ func _physics_process(delta: float) -> void:
 		bullet.rotation = rotation
 		
 		$"../Bullets".add_child(bullet)
+		$SFX/Shoot.play()
 	
 	if velocity.length() > 0:
 		var friction = velocity.normalized() * 400 * delta
@@ -70,3 +77,11 @@ func _physics_process(delta: float) -> void:
 
 func damage(v: int):
 	hearts -= v
+	$SFX/Hit.play()
+	
+	if hearts == 0:
+		$CanvasLayer/GameOver.show()
+		$CanvasLayer/GameOver/Buttons/MenuMenuButton.grab_focus()
+
+func _on_menu_menu_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/menus/menu.tscn")
