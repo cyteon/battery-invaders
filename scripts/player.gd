@@ -100,6 +100,7 @@ func damage(v: int):
 	$SFX/Hit.play()
 	
 	if hearts == 0:
+		$CanvasLayer/Hearts.size.x = 0
 		$EngineParticles.emitting = false
 		$CanvasLayer/GameOver.show()
 		$CanvasLayer/GameOver/Buttons/MenuMenuButton.grab_focus()
