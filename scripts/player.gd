@@ -22,6 +22,11 @@ func _physics_process(delta: float) -> void:
 	elif Input.is_key_pressed(KEY_RIGHT):
 		rotation_degrees += 5
 	
+	var joystick_input = Input.get_vector("joystick_left", "joystick_right", "joystick_up", "joystick_down")
+	
+	if joystick_input != Vector2.ZERO:
+		rotation = joystick_input.angle()
+	
 	if Input.is_action_pressed("boost") and energy > 0:
 		energy -= 0.5
 		

@@ -34,21 +34,26 @@ position = Vector2(0, -256)
 [node name="Tutorial" type="Node2D" parent="."]
 
 [node name="Battery" type="Label" parent="Tutorial"]
-offset_left = -296.0
+offset_left = -304.0
 offset_top = -272.0
-offset_right = -163.0
+offset_right = -171.0
 offset_bottom = -237.0
 theme_override_font_sizes/font_size = 16
 text = "Hit a battery to get more energy"
 autowrap_mode = 2
 
-[node name="Movement" type="Label" parent="Tutorial"]
-offset_left = -296.0
-offset_top = -104.0
-offset_right = -168.0
-offset_bottom = 7.0
+[node name="Keys" type="Label" parent="Tutorial"]
+offset_left = 176.0
+offset_top = -280.0
+offset_right = 304.0
+offset_bottom = -224.0
 theme_override_font_sizes/font_size = 16
-text = "Use your mouse to rotate, and space to boost, but be careful as you can go fast"
+text = "Use your mouse or left/right arrows to rotate
+
+Use space, >, or trigger to boost
+
+Use X (keyboard), A (xbox) or B (nintendo) to shoot
+"
 autowrap_mode = 2
 
 [node name="Bullets" type="Node" parent="."]
