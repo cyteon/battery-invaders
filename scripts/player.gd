@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var energy: int = 100
+var energy: float = 100.0
 var hearts: int = 3
 var score: int = 0
 
@@ -17,10 +17,15 @@ func _physics_process(delta: float) -> void:
 	if $CanvasLayer/GameOver.visible:
 		return
 	
+	if Input.is_key_pressed(KEY_LEFT):
+		rotation_degrees -= 5
+	elif Input.is_key_pressed(KEY_RIGHT):
+		rotation_degrees += 5
+	
 	if Input.is_action_pressed("boost") and energy > 0:
-		energy -= 1
+		energy -= 0.5
 		
-		var direction = (get_global_mouse_position() - global_position).normalized()
+		var direction = Vector2(cos(rotation), sin(rotation)).normalized()
 		velocity += direction * 50
 		
 		$EngineParticles.emitting = true
@@ -28,7 +33,7 @@ func _physics_process(delta: float) -> void:
 		$EngineParticles.emitting = false
 	
 	if Input.is_action_just_pressed("shoot") and energy > 0:
-		if energy >= 10: energy -= 10
+		if energy >= 5: energy -= 5
 		else: energy = 0 # we will let people exhaust their energy to shoot, even if under 10
 		
 		var bullet = load("res://scenes/items/bullet.tscn").instantiate()
@@ -46,8 +51,8 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity -= friction
 	
-	if velocity.length() > 800:
-		velocity = velocity.normalized() * 800
+	if velocity.length() > 400:
+		velocity = velocity.normalized() * 400
 		
 	move_and_slide()
 	
@@ -61,7 +66,11 @@ func _physics_process(delta: float) -> void:
 				has_collided_with_wall = true
 				
 				if not still_colliding_with_wall:
-					damage(1)
+					if energy > 10:
+						energy -= 10
+					else:
+						damage(1)
+					
 					still_colliding_with_wall = true
 				
 				var normal = get_slide_collision(i).get_normal()

@@ -19,6 +19,7 @@ texture = ExtResource("1_uwrxv")
 centered = false
 
 [node name="Player" parent="." instance=ExtResource("2_yqjtg")]
+unique_name_in_owner = true
 position = Vector2(0, -128)
 
 [node name="Walls" type="Node2D" parent="."]
@@ -51,3 +52,5 @@ text = "Use your mouse to rotate, and space to boost, but be careful as you can 
 autowrap_mode = 2
 
 [node name="Bullets" type="Node" parent="."]
+
+[node name="Enemies" type="Node" parent="."]

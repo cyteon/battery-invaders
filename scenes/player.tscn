@@ -15,11 +15,10 @@ bg_color = Color(1, 1, 0.454902, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qlg0r"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
+collision_mask = 17
 script = ExtResource("1_3vyb7")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
