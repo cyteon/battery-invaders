@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 var energy: int = 100
 var hearts: int = 3
+var score: int = 0
+
 var still_colliding_with_wall: bool = false
 
 func _input(event: InputEvent) -> void:
@@ -18,6 +20,16 @@ func _physics_process(delta: float) -> void:
 		$EngineParticles.emitting = true
 	else:
 		$EngineParticles.emitting = false
+	
+	if Input.is_action_just_pressed("shoot") and energy > 0:
+		if energy >= 10: energy -= 10
+		else: energy = 0 # we will let people exhaust their energy to shoot, even if under 10
+		
+		var bullet = load("res://scenes/items/bullet.tscn").instantiate()
+		bullet.global_position = global_position
+		bullet.rotation = rotation
+		
+		$"../Bullets".add_child(bullet)
 	
 	if velocity.length() > 0:
 		var friction = velocity.normalized() * 400 * delta
@@ -50,6 +62,8 @@ func _physics_process(delta: float) -> void:
 	
 	$CanvasLayer/ProgressBar.value = energy
 	$CanvasLayer/Hearts.size.x = hearts * 16
+	
+	$CanvasLayer/Score.text = str(score).lpad(6, "0")
 
 func damage(v: int):
 	hearts -= v

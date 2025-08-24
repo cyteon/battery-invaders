@@ -43,6 +43,14 @@ texture = ExtResource("2_g2els")
 expand_mode = 1
 stretch_mode = 1
 
+[node name="Score" type="Label" parent="CanvasLayer"]
+offset_left = 512.0
+offset_top = 10.0
+offset_right = 632.0
+offset_bottom = 26.0
+text = "000000"
+horizontal_alignment = 2
+
 [node name="EngineParticles" type="CPUParticles2D" parent="."]
 position = Vector2(-16, 0)
 amount = 64
