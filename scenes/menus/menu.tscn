@@ -51,6 +51,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
 
 [node name="StartButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -71,6 +72,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_v46pp")
 text = "Start"
 
 [node name="LeaderboardButton" type="Button" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 focus_neighbor_top = NodePath("../StartButton")
 theme_override_colors/font_focus_color = Color(1, 1, 0.231373, 1)

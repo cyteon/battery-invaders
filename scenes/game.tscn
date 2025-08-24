@@ -43,11 +43,11 @@ autowrap_mode = 2
 
 [node name="Movement" type="Label" parent="Tutorial"]
 offset_left = -296.0
-offset_top = -72.0
+offset_top = -104.0
 offset_right = -168.0
-offset_bottom = -16.0
+offset_bottom = 7.0
 theme_override_font_sizes/font_size = 16
-text = "Press space to boost, use mouse to rotate"
+text = "Use your mouse to rotate, and space to boost, but be careful as you can go fast"
 autowrap_mode = 2
 
 [node name="Bullets" type="Node" parent="."]

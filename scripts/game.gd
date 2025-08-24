@@ -23,7 +23,6 @@ func _generate_next_segment(i: int = -1):
 	
 	if i > 1 or i == -1:
 		direction = Vector2.UP.rotated(randf_range(-rand, rand)) * segment_len
-		print("blep")
 	else:
 		direction = Vector2.UP * segment_len
 	
@@ -46,7 +45,7 @@ func _generate_next_segment(i: int = -1):
 	last_path_center = next_center
 	next_seg_y = next_center.y
 	
-	if randi_range(0,3) == 1:
+	if randi_range(0,2) == 1:
 		var bat = load("res://scenes/items/battery.tscn").instantiate()
 		bat.position = last_path_center + Vector2(randi_range(-100, 100), randi_range(-100, 100))
 		
@@ -70,4 +69,24 @@ func create_wall_segment(start: Vector2, end: Vector2) -> StaticBody2D:
 	
 	col.polygon = p
 	wall.add_child(col)
+	
+	var spacing = 40
+	var count = int(segment_len / spacing)
+	
+	for i in range(1, count):
+		var t = float(i) / count
+		var pos = start.lerp(end, t)
+		
+		var sprite = Sprite2D.new()
+		
+		var opts = [1, 1, 1, 2, 2, 2, 3] # make 3 rarer
+		
+		sprite.texture = load("res://assets/sprites/asteroid_%s.png" % opts[randi() % opts.size()])
+		sprite.position = pos
+		sprite.position.x += randi_range(-5, 5)
+		sprite.rotation = dir.angle() + randf_range(-1, 1)
+		sprite.scale = Vector2(2, 2)
+		
+		wall.add_child(sprite)
+	
 	return wall

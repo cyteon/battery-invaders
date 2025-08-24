@@ -56,6 +56,9 @@ func _physics_process(delta: float) -> void:
 				if not still_colliding_with_wall:
 					damage(1)
 					still_colliding_with_wall = true
+				
+				var normal = get_slide_collision(i).get_normal()
+				velocity += normal * 150
 	
 	if not has_collided_with_wall:
 		still_colliding_with_wall = false
