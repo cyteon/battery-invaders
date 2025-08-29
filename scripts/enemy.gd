@@ -51,7 +51,7 @@ func _on_cpu_particles_2d_finished() -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		body.damage(1)
+		body.damage(50)
 		kill()
 	elif body.is_in_group("wall"):
 		kill()

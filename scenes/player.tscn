@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cc7j30476b506"]
 
 [ext_resource type="Script" uid="uid://bov5uaobpjh40" path="res://scripts/player.gd" id="1_3vyb7"]
-[ext_resource type="Texture2D" uid="uid://cb7ap75ndjyjj" path="res://assets/sprites/heart.png" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://ctaoneew6w2fn" path="res://assets/sprites/battery.png" id="2_qlg0r"]
 [ext_resource type="AudioStream" uid="uid://gxabrxclk0ps" path="res://assets/sfx/shoot.wav" id="3_qhqgy"]
 [ext_resource type="AudioStream" uid="uid://bjv37jx1yiwlq" path="res://assets/sfx/battery_pickup.wav" id="4_dqkch"]
 [ext_resource type="AudioStream" uid="uid://1mnpxq6awe0e" path="res://assets/sfx/hit.wav" id="5_qlg0r"]
@@ -38,12 +38,12 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_g2els")
 value = 50.0
 show_percentage = false
 
-[node name="Hearts" type="TextureRect" parent="CanvasLayer"]
+[node name="Batteries" type="TextureRect" parent="CanvasLayer"]
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 56.0
 offset_bottom = 24.0
-texture = ExtResource("2_g2els")
+texture = ExtResource("2_qlg0r")
 expand_mode = 1
 stretch_mode = 1
 

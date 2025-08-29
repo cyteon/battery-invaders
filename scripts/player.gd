@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var energy: float = 100.0
-var hearts: int = 3
+var batteries: int = 3
 var score: int = 0
 
 var still_colliding_with_wall: bool = false
@@ -88,22 +88,28 @@ func _physics_process(delta: float) -> void:
 	
 	if energy == 0:
 		damage(1)
-		energy += 50
 	
 	$CanvasLayer/ProgressBar.value = energy
-	$CanvasLayer/Hearts.size.x = hearts * 16
+	$CanvasLayer/Batteries.size.x = batteries * 16
 	
 	$CanvasLayer/Score.text = str(score).lpad(6, "0")
 
 func damage(v: int):
-	hearts -= v
+	energy -= v
 	$SFX/Hit.play()
 	
-	if hearts == 0:
-		$CanvasLayer/Hearts.size.x = 0
+	if energy <= 0 and batteries > 0:
+		batteries -= 1
+		energy += 100
+	
+	if batteries <= 0 and energy <= 0:
+		$CanvasLayer/Batteries.size.x = 0
 		$EngineParticles.emitting = false
 		$CanvasLayer/GameOver.show()
 		$CanvasLayer/GameOver/Buttons/MenuMenuButton.grab_focus()
+	
+	$CanvasLayer/ProgressBar.value = energy
+	$CanvasLayer/Batteries.size.x = batteries * 16
 
 func _on_menu_menu_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/menus/menu.tscn")
